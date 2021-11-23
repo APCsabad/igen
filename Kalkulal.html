@@ -1,0 +1,42 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Document</title> 
+
+    <!-- alapdíj:2000ft 
+    súly:100ft/kg 
+    km díj:150/km --> 
+</head> 
+
+<body> 
+    <form name="lap"> 
+        <input type="number" name="suly"> <!--A súly funkcióit és nevét határozza meg--> 
+        <select name="távolság"  id=""> <!--A távolság funkcióit és nevét határozza meg--> 
+            <script> 
+                var varosok = [['Balmazújváros',28],['Hajdúböszrmény',19],['Hajdúnánás',46],['Hajdúdorog',36],['Hajdúvíd',30]]; 
+                for (let i = 0; i < varosok.length; i++) { 
+                    document.write("<option value="+varosok[i][1]+">"+varosok[i][0]+"</option>"); 
+                } 
+            </script> <!--fent található a popmenü ami elsősorába megadjuk a város nevét és az értékét (km-ben). második és harmadik sorban a lenyílást és az ott elhelyezett városokat írja ki--> 
+        </select> 
+        <input type="button" value="Ok" onclick="szamolas(document.lap.suly.value,document.lap.távolság.value)"> <!--gombot csinál amire az van írva hogy ok és a számolás fügvényt kéri be. végén lévő zárójelbe van az elérés útvonal--> 
+    </form> 
+
+    <script> 
+        function szamolas(suly,tavolsag){ //a szamolasnak adja meg a funkcióját és azt mi tartozik oda.
+            const ALAPDÍJ = 2000; //megadja az alapdíjat 
+            const SÚLYDÍJ = 100;  //megadja a súlydíjat 
+            const TÁVDÍJ = 150;   //megadja a táv díjat 
+            var b = parseInt(suly); //bekéri a súlyt 
+            var c = parseInt(tavolsag);  //bekéri a távolságot 
+            var eredm = ALAPDÍJ+b*SÚLYDÍJ+c*TÁVDÍJ; //kiszámítja az össz díjat 
+
+            alert("Fizetendő: " +eredm); //kiiratja hogy mennyit kell fizetni
+        } 
+    </script> 
+</body> 
+
+</html> 

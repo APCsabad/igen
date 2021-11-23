@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Author" content="Szemán Csaba">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <form name="feecalculator">
+
+        <label>Adja meg a város nevét:</label>
+        <select id="town" onclick="popMenu(document.feecalculator.town)">
+            <option>Válasszon várost</option>
+        </select>
+
+        <label>Adja meg a csomag sulyát (kg):</label>
+        <input type="number" name="weight" id="weight">
+
+        <input type="button" value="Kalkulál!" onclick="feeCalculator(document.feecalculator.town.value, document.feecalculator.weight.value)">
+    </form>
+
+    <script>
+
+        function popMenu(t) { //megadjuk hogy mi legyen a funkció ez esetben pop menü
+            var townList = [['Budapest', 232], ['Szeged', 230], ['Miskolc', 114], ['Pécs', 474], ['Győr', 377], ['Nyíregyháza', 50], ['Kecskemét', 184], ['Székesfehérvár', 317], ['Szombathely', 458], ['Szolnok', 130]] //létrehozzuk a kért városokat és be írjuk mellé érékként hogy milyen távolságra van (km-ben)
+
+            if (t.options.length == 1) { // "ha" fügvény
+
+            for(var i = 0; i < townList.length; i++){ //ciklus ami a townlisten(felsorolt városokon) megy végig egyesével
+        
+                var towns = townList[i]; //a "towns" egyenlő a TownsListben lévő i helyével (i végig megy) 
+
+                var el = document.createElement("option"); // létrehozza az "el" funkcióját
+                el.textContent = towns[0]; //szöveget kiírja az adott helyre
+                el.value = towns[1]; //az érték egyenlő az adott towns helyel
+                t.appendChild(el); //elemet ad hozzá a t változóhoz.
+
+            }
+        }
+    }
+        function feeCalculator(d, w) { //A "feeCalculator"-nak adja meg a funkcióját és azt mi tartozik oda.
+
+
+            var weightFee = w * 100; //meghatározza a súly díjat (w bekérés azt szoroza 100-al)
+            var distanceFee = d * 150; //meghatározza a táv díjat (d bekérés azt szorozza 150-el)
+            var total = weightFee+ distanceFee + 2000; //összeadja az eddigieket és hozzáad 2000-t
+
+            alert("Alapdíj: 2000Ft," + " Súlydíj: " +weightFee +"Ft," + " Km díj: " + distanceFee + "Ft," + " Összesen: " + total + "Ft") //kiírja  az itt lévő szöveget mellé a díjakat.
+
+        }
+
+    </script>
+    
+</body>
+</html>
